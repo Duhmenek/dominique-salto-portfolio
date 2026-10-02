@@ -96,7 +96,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
     headline: "Mobile & Systems Developer",
     location: "Taguig City, Philippines",
     status: "Available for Mobile & Systems Development Opportunities",
-    bio: "Mobile & Systems Developer dedicated to crafting robust, high-performance cross-platform applications with Flutter and Dart, built alongside reliable backend systems, secure network infrastructure, and modern development workflows.",
+    bio: "I'm a mobile & systems developer crafting clean, cross-platform apps and robust backend workflows. Currently focused on building intuitive Flutter applications and exploring modern tech stacks.\nRight now, I turn rough concepts into functional, high-performance software that solves real-world problems.",
     socialLinks: [
       {
         platform: "GitHub",

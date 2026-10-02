@@ -197,12 +197,14 @@ export default function PortfolioPage() {
             </div>
 
             {/* Editorial Bio */}
-            <p className="max-w-2xl text-sm md:text-base text-zinc-400 leading-relaxed">
-              Specializing in cross-platform mobile development with{" "}
-              <span className="text-zinc-200 font-medium">Flutter & Dart</span>, backed
-              by practical foundation in network security, system administration, and
-              resilient backend architecture.
-            </p>
+            <div className="max-w-2xl space-y-3 text-sm md:text-base text-zinc-400 leading-relaxed">
+              <p>
+                I&apos;m a mobile &amp; systems developer crafting clean, cross-platform apps and robust backend workflows. Currently focused on building intuitive Flutter applications and exploring modern tech stacks.
+              </p>
+              <p>
+                Right now, I turn rough concepts into functional, high-performance software that solves real-world problems.
+              </p>
+            </div>
 
             {/* Quick External Links & Clipboard Action */}
             <div className="flex flex-wrap items-center gap-5 pt-3 text-sm font-mono">
