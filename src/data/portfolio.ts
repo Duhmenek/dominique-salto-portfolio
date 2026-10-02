@@ -59,6 +59,7 @@ export interface PortfolioData {
     categorized: SkillGroup[];
   };
   projects: Project[];
+  certifications: string[];
 }
 
 export const PORTFOLIO_DATA: PortfolioData = {
@@ -214,4 +215,21 @@ export const PORTFOLIO_DATA: PortfolioData = {
       featured: true,
     },
   ],
+
+  certifications: [
+    "Networking Basics",
+    "Networking Devices and Initial Configuration",
+    "Network Addressing and Basic Troubleshooting",
+    "Network Support Security",
+    "Network Technician Career Path",
+    "Computer Hardware Basics",
+    "Operating System Basics",
+    "Introduction to Cybersecurity",
+    "Introduction to IoT and Digital Transformation",
+    "AI Ready ASEAN Hour of Code Training",
+    "AI Codes for Ocean Hour of Code",
+    "Allergen Management Training (7-Star Educational Academy)",
+  ],
 };
+
+export const CERTIFICATIONS: string[] = PORTFOLIO_DATA.certifications;
