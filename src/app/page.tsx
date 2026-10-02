@@ -177,7 +177,7 @@ export default function PortfolioPage() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
-                <span>Open for Mobile & Systems Engineering roles</span>
+                <span>Open for Mobile & Systems Development roles</span>
               </div>
 
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-zinc-900/60 border border-zinc-800/80 text-zinc-400">
@@ -192,13 +192,13 @@ export default function PortfolioPage() {
                 I&apos;m Dominique Andrie R. Salto
               </h1>
               <p className="text-xl md:text-2xl text-zinc-400 font-medium">
-                Mobile & Systems Engineer based in Taguig City.
+                Mobile & Systems Developer based in Taguig City.
               </p>
             </div>
 
             {/* Editorial Bio */}
             <p className="max-w-2xl text-sm md:text-base text-zinc-400 leading-relaxed">
-              Specializing in cross-platform mobile engineering with{" "}
+              Specializing in cross-platform mobile development with{" "}
               <span className="text-zinc-200 font-medium">Flutter & Dart</span>, backed
               by practical foundation in network security, system administration, and
               resilient backend architecture.
@@ -344,7 +344,7 @@ export default function PortfolioPage() {
             <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest">
               03 — tech stack
             </span>
-            <span className="font-mono text-xs text-zinc-600">Core Engineering Arsenal</span>
+            <span className="font-mono text-xs text-zinc-600">Core Development Arsenal</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

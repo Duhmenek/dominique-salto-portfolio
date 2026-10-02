@@ -68,13 +68,13 @@ export const PORTFOLIO_DATA: PortfolioData = {
       number: "01",
       id: "intro",
       label: "01 — intro",
-      title: "Engineering Profile & Focus",
+      title: "Developer Profile & Focus",
     },
     {
       number: "02",
       id: "projects",
       label: "02 — projects",
-      title: "Featured Engineering Works",
+      title: "Featured Development Works",
     },
     {
       number: "03",
@@ -93,10 +93,10 @@ export const PORTFOLIO_DATA: PortfolioData = {
   personalInfo: {
     fullName: "Dominique Andrie R. Salto",
     preferredName: "Dom",
-    headline: "Mobile & Systems Engineer",
+    headline: "Mobile & Systems Developer",
     location: "Taguig City, Philippines",
-    status: "Available for Mobile & Systems Engineering Opportunities",
-    bio: "Mobile & Systems Engineer dedicated to crafting robust, high-performance cross-platform applications with Flutter and Dart, engineered alongside resilient backend systems, secure network infrastructure, and automated development workflows.",
+    status: "Available for Mobile & Systems Development Opportunities",
+    bio: "Mobile & Systems Developer dedicated to crafting robust, high-performance cross-platform applications with Flutter and Dart, built alongside reliable backend systems, secure network infrastructure, and modern development workflows.",
     socialLinks: [
       {
         platform: "GitHub",
@@ -201,7 +201,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       id: "ptc-careerlink",
       title: "PTC CareerLink",
       type: "Mobile & Platform Application",
-      role: "Systems & Mobile Engineer",
+      role: "Systems & Mobile Developer",
       summary:
         "Mobile & Platform application for enterprise partner matching and resume/application submission.",
       technologies: ["Flutter", "Dart", "Cross-Platform", "Git", "GitHub"],

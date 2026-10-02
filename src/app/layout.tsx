@@ -5,9 +5,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Dominique Salto | Mobile & Systems Engineer",
+  title: "Dominique Salto | Mobile & Systems Developer",
   description:
-    "Portfolio of Dominique Andrie R. Salto (Dom) - Mobile and Systems Engineer specializing in Flutter, Dart, and Resilient Architecture.",
+    "Portfolio of Dominique Andrie R. Salto (Dom) - Mobile and Systems Developer specializing in Flutter, Dart, and Resilient Architecture.",
 };
 
 export default function RootLayout({
