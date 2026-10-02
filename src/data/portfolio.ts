@@ -91,7 +91,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
   ],
 
   personalInfo: {
-    fullName: "Dominique Andrie R. Salto",
+    fullName: "Dominique Salto",
     preferredName: "Dom",
     headline: "Mobile & Systems Developer",
     location: "Taguig City, Philippines",

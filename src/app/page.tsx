@@ -188,12 +188,12 @@ export default function PortfolioPage() {
 
             {/* Concise Personal Intro */}
             <div className="space-y-3 pt-2">
-              <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-zinc-100">
-                I&apos;m Dominique Andrie R. Salto
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-100 leading-tight">
+                I&apos;m Dominique Salto —{" "}
+                <span className="text-zinc-400 font-normal">
+                  Mobile &amp; Systems Developer based in Taguig City.
+                </span>
               </h1>
-              <p className="text-xl md:text-2xl text-zinc-400 font-medium">
-                Mobile & Systems Developer based in Taguig City.
-              </p>
             </div>
 
             {/* Editorial Bio */}

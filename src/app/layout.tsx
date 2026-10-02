@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Dominique Salto | Mobile & Systems Developer",
   description:
-    "Portfolio of Dominique Andrie R. Salto (Dom) - Mobile and Systems Developer specializing in Flutter, Dart, and Resilient Architecture.",
+    "Portfolio of Dominique Salto (Dom) - Mobile and Systems Developer specializing in Flutter, Dart, and Resilient Architecture.",
 };
 
 export default function RootLayout({
