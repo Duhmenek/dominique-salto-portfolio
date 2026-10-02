@@ -260,7 +260,7 @@ export default function PortfolioPage() {
             <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest">
               02 — projects
             </span>
-            <span className="font-mono text-xs text-zinc-600">Featured Systems</span>
+            <span className="font-mono text-xs text-zinc-600">Featured Projects & Apps</span>
           </div>
 
           <div className="space-y-4">
@@ -342,7 +342,7 @@ export default function PortfolioPage() {
         <section id="stack" className="space-y-6 scroll-mt-24">
           <div className="border-b border-zinc-900 pb-3 flex items-center justify-between">
             <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest">
-              03 — tech stack
+              03 — stack
             </span>
             <span className="font-mono text-xs text-zinc-600">Core Development Arsenal</span>
           </div>

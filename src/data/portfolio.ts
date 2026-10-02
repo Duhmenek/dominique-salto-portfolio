@@ -74,7 +74,7 @@ export const PORTFOLIO_DATA: PortfolioData = {
       number: "02",
       id: "projects",
       label: "02 — projects",
-      title: "Featured Development Works",
+      title: "Featured Projects & Apps",
     },
     {
       number: "03",
