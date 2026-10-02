@@ -9,10 +9,8 @@ import {
   MapPin,
   GraduationCap,
   Award,
-  ExternalLink,
   Smartphone,
   Terminal,
-  Shield,
   Server,
   CheckCircle2,
   ArrowUpRight,
@@ -21,6 +19,7 @@ import {
   Code2,
   Copy,
   Check,
+  Cpu,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
@@ -37,15 +36,22 @@ export default function PortfolioPage() {
 
   const getCategoryIcon = (categoryName: string) => {
     switch (categoryName) {
+      case "Mobile Architecture":
       case "Mobile & App Development":
         return <Smartphone className="w-5 h-5 text-cyan-400" />;
+      case "Developer Tools":
       case "Developer Tools & Version Control":
         return <Terminal className="w-5 h-5 text-emerald-400" />;
+      case "Systems & Security":
       case "Systems & Infrastructure":
         return <Server className="w-5 h-5 text-cyan-400" />;
       default:
         return <Code2 className="w-5 h-5 text-emerald-400" />;
     }
+  };
+
+  const getSection = (id: string) => {
+    return PORTFOLIO_DATA.sections.find((s) => s.id === id);
   };
 
   return (
@@ -59,7 +65,7 @@ export default function PortfolioPage() {
       </div>
 
       {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur-md bg-[#0a0a0c]/80 border-b border-zinc-800/80 transition-all">
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-[#0a0a0c]/85 border-b border-zinc-800/80 transition-all">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <motion.a
             href="#"
@@ -76,28 +82,23 @@ export default function PortfolioPage() {
             </span>
           </motion.a>
 
-          <nav className="flex items-center gap-6 text-sm text-zinc-400 font-medium">
-            <a
-              href="#projects"
-              className="hover:text-cyan-400 transition-colors hidden sm:inline-block"
-            >
-              Projects
-            </a>
-            <a
-              href="#stack"
-              className="hover:text-cyan-400 transition-colors hidden sm:inline-block"
-            >
-              Stack
-            </a>
-            <a
-              href="#academics"
-              className="hover:text-emerald-400 transition-colors hidden sm:inline-block"
-            >
-              Academics
-            </a>
+          {/* Numbered Sections Navigation (Bryl Lim style) */}
+          <nav className="flex items-center gap-4 md:gap-6 text-xs font-mono text-zinc-400">
+            {PORTFOLIO_DATA.sections.map((sec) => (
+              <a
+                key={sec.id}
+                href={`#${sec.id}`}
+                className="hover:text-cyan-400 transition-colors hidden sm:inline-flex items-center gap-1 group"
+              >
+                <span className="text-zinc-600 group-hover:text-cyan-500 transition-colors">
+                  {sec.number}.
+                </span>
+                <span>{sec.id}</span>
+              </a>
+            ))}
             <a
               href="#contact"
-              className="px-3.5 py-1.5 rounded-lg bg-zinc-900 border border-zinc-700/70 text-zinc-200 hover:text-white hover:border-cyan-500/60 hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] transition-all text-xs font-mono uppercase tracking-wider"
+              className="px-3.5 py-1.5 rounded-lg bg-zinc-900 border border-zinc-700/70 text-zinc-200 hover:text-white hover:border-cyan-500/60 hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] transition-all uppercase tracking-wider"
             >
               Contact
             </a>
@@ -107,19 +108,22 @@ export default function PortfolioPage() {
 
       {/* Main Content Area */}
       <main className="relative z-10 max-w-6xl mx-auto px-6 py-12 md:py-20 space-y-28">
-        {/* Hero Section */}
-        <section className="relative pt-6">
+        {/* 01 — Hero / Intro Section */}
+        <section id="intro" className="relative pt-6 scroll-mt-24">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="space-y-6"
           >
-            {/* Status Pills */}
+            {/* Numbered Index Pill & Status */}
             <div className="flex flex-wrap items-center gap-3">
+              <span className="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-zinc-900 border border-zinc-700/80 text-cyan-400">
+                {getSection("intro")?.label ?? "01 — intro"}
+              </span>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-cyan-950/50 border border-cyan-800/60 text-cyan-300 shadow-[0_0_16px_rgba(6,182,212,0.15)]">
                 <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Available for Systems & Mobile Engineering</span>
+                <span>{PORTFOLIO_DATA.personalInfo.status}</span>
               </div>
               <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-emerald-950/40 border border-emerald-800/50 text-emerald-300">
                 <Award className="w-3.5 h-3.5 text-emerald-400" />
@@ -161,7 +165,7 @@ export default function PortfolioPage() {
                 href="#projects"
                 className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-zinc-950 font-bold text-sm tracking-wide hover:brightness-110 shadow-[0_0_24px_rgba(6,182,212,0.25)] transition-all flex items-center gap-2 group"
               >
-                <span>Explore Featured Works</span>
+                <span>View Engineering Works</span>
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
 
@@ -206,15 +210,15 @@ export default function PortfolioPage() {
           </motion.div>
         </section>
 
-        {/* Featured Engineering Works */}
+        {/* 02 — Featured Engineering Works */}
         <section id="projects" className="space-y-8 scroll-mt-24">
           <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
             <div>
-              <div className="text-xs font-mono tracking-widest text-cyan-400 uppercase">
-                Featured Engineering Works
+              <div className="text-xs font-mono tracking-widest text-cyan-400 uppercase flex items-center gap-2">
+                <span>{getSection("projects")?.label ?? "02 — projects"}</span>
               </div>
               <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight mt-1">
-                Production-Ready Systems
+                {getSection("projects")?.title ?? "Featured Engineering Works"}
               </h2>
             </div>
             <Layers className="w-6 h-6 text-zinc-600" />
@@ -236,11 +240,18 @@ export default function PortfolioPage() {
                 )}
               >
                 <div className="space-y-4">
-                  {/* Top Category Badge & Github Link */}
+                  {/* Top Badges & Github Link */}
                   <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-cyan-950/60 border border-cyan-800/60 text-cyan-300">
-                      {project.type}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span className="px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-cyan-950/60 border border-cyan-800/60 text-cyan-300">
+                        {project.type}
+                      </span>
+                      {project.role && (
+                        <span className="text-[11px] font-mono text-zinc-400">
+                          {project.role}
+                        </span>
+                      )}
+                    </div>
                     {project.githubUrl && (
                       <a
                         href={project.githubUrl}
@@ -264,10 +275,24 @@ export default function PortfolioPage() {
                     </p>
                   </div>
 
+                  {/* Tags */}
+                  {project.tags && (
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-0.5 rounded text-[10px] font-mono bg-zinc-800/50 text-cyan-300/80 border border-cyan-900/40"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
                   {/* Key Highlights List */}
                   <div className="space-y-2 pt-2 border-t border-zinc-800/80">
                     <div className="text-xs font-mono uppercase text-zinc-400 tracking-wider">
-                      Key Capabilities:
+                      Architectural Highlights:
                     </div>
                     <ul className="space-y-1.5 text-xs text-zinc-300">
                       {project.keyHighlights.map((highlight, idx) => (
@@ -310,14 +335,14 @@ export default function PortfolioPage() {
           </div>
         </section>
 
-        {/* Technical Stack & Infrastructure */}
+        {/* 03 — Technical Stack & Infrastructure */}
         <section id="stack" className="space-y-8 scroll-mt-24">
           <div className="border-b border-zinc-800 pb-4">
-            <div className="text-xs font-mono tracking-widest text-emerald-400 uppercase">
-              Technical Stack & Infrastructure
+            <div className="text-xs font-mono tracking-widest text-emerald-400 uppercase flex items-center gap-2">
+              <span>{getSection("stack")?.label ?? "03 — stack"}</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight mt-1">
-              Core Engineering Arsenal
+              {getSection("stack")?.title ?? "Technical Stack & Infrastructure"}
             </h2>
           </div>
 
@@ -332,7 +357,7 @@ export default function PortfolioPage() {
                 className="rounded-2xl p-6 bg-zinc-900/40 border border-zinc-800/90 backdrop-blur-xl hover:border-zinc-700 transition-colors flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-3 mb-2">
                     <div className="p-2 rounded-lg bg-zinc-800/80 border border-zinc-700/50">
                       {getCategoryIcon(category.name)}
                     </div>
@@ -340,6 +365,12 @@ export default function PortfolioPage() {
                       {category.name}
                     </h3>
                   </div>
+
+                  {category.description && (
+                    <p className="text-xs text-zinc-400 mb-4 leading-relaxed">
+                      {category.description}
+                    </p>
+                  )}
 
                   <div className="flex flex-wrap gap-2">
                     {category.items.map((skill) => (
@@ -357,14 +388,14 @@ export default function PortfolioPage() {
           </div>
         </section>
 
-        {/* Academic Excellence Spotlight */}
+        {/* 04 — Academic Excellence Spotlight */}
         <section id="academics" className="space-y-8 scroll-mt-24">
           <div className="border-b border-zinc-800 pb-4">
-            <div className="text-xs font-mono tracking-widest text-cyan-400 uppercase">
-              Academic Background
+            <div className="text-xs font-mono tracking-widest text-cyan-400 uppercase flex items-center gap-2">
+              <span>{getSection("academics")?.label ?? "04 — education & achievements"}</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight mt-1">
-              Academic Excellence Spotlight
+              {getSection("academics")?.title ?? "Academic Excellence Spotlight"}
             </h2>
           </div>
 
@@ -401,6 +432,17 @@ export default function PortfolioPage() {
                 <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
                   {PORTFOLIO_DATA.academicBackground.description}
                 </p>
+
+                {PORTFOLIO_DATA.academicBackground.highlights && (
+                  <ul className="space-y-1.5 pt-2 text-xs text-zinc-300 font-mono">
+                    {PORTFOLIO_DATA.academicBackground.highlights.map((h, i) => (
+                      <li key={i} className="flex items-center gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
 
               {/* Distinction Stat Box */}
