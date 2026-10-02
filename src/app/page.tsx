@@ -15,8 +15,10 @@ import {
   Terminal,
   ShieldCheck,
   Server,
-  Layers,
+  Network,
+  Cpu,
   Sparkles,
+  Award,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
@@ -39,6 +41,48 @@ export default function PortfolioPage() {
       return <Terminal className="w-4 h-4 text-zinc-300" />;
     }
     return <Server className="w-4 h-4 text-zinc-300" />;
+  };
+
+  const getCertIcon = (cert: string) => {
+    const lower = cert.toLowerCase();
+    if (lower.includes("security") || lower.includes("cybersecurity")) {
+      return <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />;
+    }
+    if (lower.includes("network")) {
+      return <Network className="w-4 h-4 text-cyan-400 shrink-0" />;
+    }
+    if (
+      lower.includes("hardware") ||
+      lower.includes("operating system") ||
+      lower.includes("iot")
+    ) {
+      return <Cpu className="w-4 h-4 text-zinc-300 shrink-0" />;
+    }
+    if (lower.includes("ai") || lower.includes("code")) {
+      return <Sparkles className="w-4 h-4 text-amber-300 shrink-0" />;
+    }
+    return <Award className="w-4 h-4 text-zinc-400 shrink-0" />;
+  };
+
+  const getCertTag = (cert: string) => {
+    const lower = cert.toLowerCase();
+    if (lower.includes("security") || lower.includes("cybersecurity")) {
+      return "Security";
+    }
+    if (lower.includes("network")) {
+      return "Networking";
+    }
+    if (
+      lower.includes("hardware") ||
+      lower.includes("operating system") ||
+      lower.includes("iot")
+    ) {
+      return "Systems";
+    }
+    if (lower.includes("ai") || lower.includes("code")) {
+      return "AI & Code";
+    }
+    return "Training";
   };
 
   return (
@@ -64,7 +108,7 @@ export default function PortfolioPage() {
           </motion.a>
 
           {/* Section Navigation Links */}
-          <nav className="flex items-center gap-6 text-xs font-mono text-zinc-400">
+          <nav className="flex items-center gap-5 md:gap-6 text-xs font-mono text-zinc-400">
             <a
               href="#about"
               className="hover:text-zinc-100 transition-colors hidden sm:inline-block"
@@ -81,13 +125,19 @@ export default function PortfolioPage() {
               href="#stack"
               className="hover:text-zinc-100 transition-colors hidden sm:inline-block"
             >
-              03 tech stack
+              03 stack
+            </a>
+            <a
+              href="#certifications"
+              className="hover:text-zinc-100 transition-colors hidden sm:inline-block"
+            >
+              04 certs
             </a>
             <a
               href="#education"
               className="hover:text-zinc-100 transition-colors hidden sm:inline-block"
             >
-              04 education
+              05 education
             </a>
 
             <button
@@ -337,13 +387,58 @@ export default function PortfolioPage() {
           </div>
         </section>
 
-        {/* 04 — Education & Recognition Section */}
+        {/* 04 — Certifications Section */}
+        <section id="certifications" className="space-y-6 scroll-mt-24">
+          <div className="border-b border-zinc-900 pb-3 flex items-center justify-between">
+            <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest">
+              04 — certifications
+            </span>
+            <span className="font-mono text-xs text-zinc-600">
+              {PORTFOLIO_DATA.certifications.length} Credentials
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-3.5">
+            {PORTFOLIO_DATA.certifications.map((cert, idx) => (
+              <motion.div
+                key={cert}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: idx * 0.03 }}
+                className={cn(
+                  "p-4 rounded-xl border border-zinc-900 bg-zinc-950/40",
+                  "hover:border-zinc-800 hover:bg-zinc-900/30 transition-all flex flex-col justify-between group"
+                )}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div className="p-2 rounded-lg bg-zinc-900/90 border border-zinc-800/80 group-hover:border-zinc-700 transition-colors">
+                    {getCertIcon(cert)}
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-900 text-zinc-500 border border-zinc-800/60">
+                    {getCertTag(cert)}
+                  </span>
+                </div>
+
+                <div className="mt-3.5">
+                  <h4 className="text-xs md:text-sm font-semibold text-zinc-200 group-hover:text-zinc-100 transition-colors leading-snug">
+                    {cert}
+                  </h4>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* 05 — Education & Recognition Section */}
         <section id="education" className="space-y-6 scroll-mt-24">
           <div className="border-b border-zinc-900 pb-3 flex items-center justify-between">
             <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest">
-              04 — education
+              05 — education
             </span>
-            <span className="font-mono text-xs text-zinc-600">Academic Background</span>
+            <span className="font-mono text-zinc-600 font-mono text-xs">
+              Academic Background
+            </span>
           </div>
 
           <motion.div
@@ -380,7 +475,10 @@ export default function PortfolioPage() {
             {PORTFOLIO_DATA.academicBackground.highlights && (
               <div className="pt-2 border-t border-zinc-900 space-y-1.5">
                 {PORTFOLIO_DATA.academicBackground.highlights.map((h, i) => (
-                  <div key={i} className="text-xs font-mono text-zinc-400 flex items-center gap-2">
+                  <div
+                    key={i}
+                    className="text-xs font-mono text-zinc-400 flex items-center gap-2"
+                  >
                     <span className="text-emerald-500">✓</span>
                     <span>{h}</span>
                   </div>
