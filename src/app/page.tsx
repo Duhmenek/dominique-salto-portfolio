@@ -8,18 +8,15 @@ import {
   Mail,
   MapPin,
   GraduationCap,
-  Award,
-  Smartphone,
-  Terminal,
-  Server,
-  CheckCircle2,
   ArrowUpRight,
-  Sparkles,
-  Layers,
-  Code2,
   Copy,
   Check,
-  Cpu,
+  Smartphone,
+  Terminal,
+  ShieldCheck,
+  Server,
+  Layers,
+  Sparkles,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PORTFOLIO_DATA } from "@/data/portfolio";
@@ -34,175 +31,172 @@ export default function PortfolioPage() {
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
-  const getCategoryIcon = (categoryName: string) => {
-    switch (categoryName) {
-      case "Mobile Architecture":
-      case "Mobile & App Development":
-        return <Smartphone className="w-5 h-5 text-cyan-400" />;
-      case "Developer Tools":
-      case "Developer Tools & Version Control":
-        return <Terminal className="w-5 h-5 text-emerald-400" />;
-      case "Systems & Security":
-      case "Systems & Infrastructure":
-        return <Server className="w-5 h-5 text-cyan-400" />;
-      default:
-        return <Code2 className="w-5 h-5 text-emerald-400" />;
+  const getDomainIcon = (domainName: string) => {
+    if (domainName.includes("Mobile")) {
+      return <Smartphone className="w-4 h-4 text-zinc-300" />;
     }
-  };
-
-  const getSection = (id: string) => {
-    return PORTFOLIO_DATA.sections.find((s) => s.id === id);
+    if (domainName.includes("Tools") || domainName.includes("Tooling")) {
+      return <Terminal className="w-4 h-4 text-zinc-300" />;
+    }
+    return <Server className="w-4 h-4 text-zinc-300" />;
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0c] text-zinc-100 selection:bg-cyan-500/20 selection:text-cyan-300 relative font-sans antialiased overflow-x-hidden">
-      {/* Background Grid & Ambient Lighting */}
+    <div className="min-h-screen bg-[#08080a] text-zinc-200 selection:bg-zinc-800 selection:text-white font-sans antialiased relative">
+      {/* Subtle Grid Pattern Overlay */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 bg-[#0a0a0c]" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#18181b40_1px,transparent_1px),linear-gradient(to_bottom,#18181b40_1px,transparent_1px)] bg-[size:32px_32px]" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[450px] bg-gradient-to-b from-cyan-500/10 via-emerald-500/5 to-transparent blur-[120px]" />
-        <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-emerald-500/5 blur-[140px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#27272a12_1px,transparent_1px),linear-gradient(to_bottom,#27272a12_1px,transparent_1px)] bg-[size:28px_28px]" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-b from-zinc-800/10 to-transparent blur-3xl" />
       </div>
 
-      {/* Header */}
-      <header className="sticky top-0 z-50 backdrop-blur-md bg-[#0a0a0c]/85 border-b border-zinc-800/80 transition-all">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      {/* Top Bar / Minimalist Header */}
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-[#08080a]/80 border-b border-zinc-900/80">
+        <div className="max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
           <motion.a
             href="#"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-2 group cursor-pointer"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex items-center gap-3 group"
           >
-            <div className="h-8 px-2.5 rounded-md bg-zinc-900 border border-zinc-700/60 flex items-center justify-center font-mono font-bold text-sm tracking-wider text-cyan-400 group-hover:border-cyan-500/50 transition-colors shadow-[0_0_12px_rgba(6,182,212,0.15)]">
+            <span className="font-mono font-bold text-sm tracking-widest text-zinc-100 group-hover:text-white transition-colors">
               &lt;DARS /&gt;
-            </div>
-            <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
           </motion.a>
 
-          {/* Numbered Sections Navigation (Bryl Lim style) */}
-          <nav className="flex items-center gap-4 md:gap-6 text-xs font-mono text-zinc-400">
-            {PORTFOLIO_DATA.sections.map((sec) => (
-              <a
-                key={sec.id}
-                href={`#${sec.id}`}
-                className="hover:text-cyan-400 transition-colors hidden sm:inline-flex items-center gap-1 group"
-              >
-                <span className="text-zinc-600 group-hover:text-cyan-500 transition-colors">
-                  {sec.number}.
-                </span>
-                <span>{sec.id}</span>
-              </a>
-            ))}
+          {/* Section Navigation Links */}
+          <nav className="flex items-center gap-6 text-xs font-mono text-zinc-400">
             <a
-              href="#contact"
-              className="px-3.5 py-1.5 rounded-lg bg-zinc-900 border border-zinc-700/70 text-zinc-200 hover:text-white hover:border-cyan-500/60 hover:shadow-[0_0_15px_rgba(6,182,212,0.2)] transition-all uppercase tracking-wider"
+              href="#about"
+              className="hover:text-zinc-100 transition-colors hidden sm:inline-block"
             >
-              Contact
+              01 about
             </a>
+            <a
+              href="#projects"
+              className="hover:text-zinc-100 transition-colors hidden sm:inline-block"
+            >
+              02 projects
+            </a>
+            <a
+              href="#stack"
+              className="hover:text-zinc-100 transition-colors hidden sm:inline-block"
+            >
+              03 tech stack
+            </a>
+            <a
+              href="#education"
+              className="hover:text-zinc-100 transition-colors hidden sm:inline-block"
+            >
+              04 education
+            </a>
+
+            <button
+              onClick={handleCopyEmail}
+              className="px-3 py-1.5 rounded-md bg-zinc-900/90 border border-zinc-800 hover:border-zinc-700 text-zinc-300 hover:text-white transition-all text-xs font-mono flex items-center gap-1.5"
+            >
+              {copiedEmail ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-emerald-400">Copied</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-3.5 h-3.5 text-zinc-400" />
+                  <span>Contact</span>
+                </>
+              )}
+            </button>
           </nav>
         </div>
       </header>
 
-      {/* Main Content Area */}
-      <main className="relative z-10 max-w-6xl mx-auto px-6 py-12 md:py-20 space-y-28">
-        {/* 01 — Hero / Intro Section */}
-        <section id="intro" className="relative pt-6 scroll-mt-24">
+      {/* Main Content Container */}
+      <main className="relative z-10 max-w-4xl mx-auto px-6 py-12 md:py-20 space-y-24">
+        {/* 01 — Hero / About Section */}
+        <section id="about" className="space-y-6 scroll-mt-24">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
             className="space-y-6"
           >
-            {/* Numbered Index Pill & Status */}
+            {/* Live Pulsing Status Badge */}
             <div className="flex flex-wrap items-center gap-3">
-              <span className="px-2.5 py-1 rounded-md text-xs font-mono font-bold bg-zinc-900 border border-zinc-700/80 text-cyan-400">
-                {getSection("intro")?.label ?? "01 — intro"}
-              </span>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-cyan-950/50 border border-cyan-800/60 text-cyan-300 shadow-[0_0_16px_rgba(6,182,212,0.15)]">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-                <span>{PORTFOLIO_DATA.personalInfo.status}</span>
-              </div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-emerald-950/40 border border-emerald-800/50 text-emerald-300">
-                <Award className="w-3.5 h-3.5 text-emerald-400" />
-                <span>
-                  {PORTFOLIO_DATA.academicBackground.gwa} •{" "}
-                  {PORTFOLIO_DATA.academicBackground.distinction}
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-zinc-900/80 border border-zinc-800 text-zinc-300">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
                 </span>
+                <span>Open for Mobile & Systems Engineering roles</span>
+              </div>
+
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono bg-zinc-900/60 border border-zinc-800/80 text-zinc-400">
+                <MapPin className="w-3.5 h-3.5 text-zinc-400" />
+                <span>{PORTFOLIO_DATA.personalInfo.location}</span>
               </div>
             </div>
 
-            {/* Name & Titles */}
-            <div className="space-y-2">
-              <div className="flex flex-wrap items-baseline gap-3">
-                <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white">
-                  {PORTFOLIO_DATA.personalInfo.fullName}
-                </h1>
-                <span className="text-lg md:text-xl font-mono text-zinc-400 font-medium">
-                  ({PORTFOLIO_DATA.personalInfo.preferredName})
-                </span>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-semibold bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">
-                {PORTFOLIO_DATA.personalInfo.headline}
-              </h2>
+            {/* Concise Personal Intro */}
+            <div className="space-y-3 pt-2">
+              <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-zinc-100">
+                I&apos;m Dominique Andrie R. Salto
+              </h1>
+              <p className="text-xl md:text-2xl text-zinc-400 font-medium">
+                Mobile & Systems Engineer based in Taguig City.
+              </p>
             </div>
 
-            {/* Location & Summary Bio */}
-            <div className="flex items-center gap-2 text-sm text-zinc-400 font-mono">
-              <MapPin className="w-4 h-4 text-emerald-400 shrink-0" />
-              <span>{PORTFOLIO_DATA.personalInfo.location}</span>
-            </div>
-
-            <p className="max-w-2xl text-base md:text-lg text-zinc-300 leading-relaxed">
-              {PORTFOLIO_DATA.personalInfo.bio}
+            {/* Editorial Bio */}
+            <p className="max-w-2xl text-sm md:text-base text-zinc-400 leading-relaxed">
+              Specializing in cross-platform mobile engineering with{" "}
+              <span className="text-zinc-200 font-medium">Flutter & Dart</span>, backed
+              by practical foundation in network security, system administration, and
+              resilient backend architecture.
             </p>
 
-            {/* CTA Buttons & Social Links */}
-            <div className="flex flex-wrap items-center gap-4 pt-4">
-              <a
-                href="#projects"
-                className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-zinc-950 font-bold text-sm tracking-wide hover:brightness-110 shadow-[0_0_24px_rgba(6,182,212,0.25)] transition-all flex items-center gap-2 group"
-              >
-                <span>View Engineering Works</span>
-                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </a>
-
+            {/* Quick External Links & Clipboard Action */}
+            <div className="flex flex-wrap items-center gap-5 pt-3 text-sm font-mono">
               <a
                 href="https://github.com/Duhmenek"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-3 rounded-xl bg-zinc-900/90 border border-zinc-700/70 text-zinc-200 hover:text-white hover:border-zinc-500 hover:bg-zinc-800 transition-all flex items-center gap-2 text-sm font-medium"
+                className="text-zinc-400 hover:text-zinc-100 transition-colors inline-flex items-center gap-1 group"
               >
-                <Github className="w-4 h-4 text-zinc-300" />
-                <span>GitHub</span>
+                <span>github</span>
+                <span className="text-zinc-500 group-hover:text-zinc-300 transition-colors">↗</span>
               </a>
 
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-3 rounded-xl bg-zinc-900/90 border border-zinc-700/70 text-zinc-200 hover:text-white hover:border-zinc-500 hover:bg-zinc-800 transition-all flex items-center gap-2 text-sm font-medium"
+                className="text-zinc-400 hover:text-zinc-100 transition-colors inline-flex items-center gap-1 group"
               >
-                <Linkedin className="w-4 h-4 text-cyan-400" />
-                <span>LinkedIn</span>
+                <span>linkedin</span>
+                <span className="text-zinc-500 group-hover:text-zinc-300 transition-colors">↗</span>
+              </a>
+
+              <a
+                href={`mailto:${emailAddress}`}
+                className="text-zinc-400 hover:text-zinc-100 transition-colors inline-flex items-center gap-1 group"
+              >
+                <span>email</span>
+                <span className="text-zinc-500 group-hover:text-zinc-300 transition-colors">↗</span>
               </a>
 
               <button
                 onClick={handleCopyEmail}
-                className="px-4 py-3 rounded-xl bg-zinc-900/90 border border-zinc-700/70 text-zinc-200 hover:text-white hover:border-cyan-500/60 transition-all flex items-center gap-2 text-sm font-medium"
-                title="Click to copy email address"
+                className="text-zinc-500 hover:text-zinc-300 transition-colors inline-flex items-center gap-1.5"
               >
                 {copiedEmail ? (
                   <>
-                    <Check className="w-4 h-4 text-emerald-400" />
-                    <span className="text-emerald-400">Copied!</span>
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    <span className="text-emerald-400">copied to clipboard</span>
                   </>
                 ) : (
                   <>
-                    <Mail className="w-4 h-4 text-zinc-400" />
-                    <span>Email</span>
+                    <Copy className="w-3.5 h-3.5" />
+                    <span>copy email</span>
                   </>
                 )}
               </button>
@@ -210,112 +204,46 @@ export default function PortfolioPage() {
           </motion.div>
         </section>
 
-        {/* 02 — Featured Engineering Works */}
-        <section id="projects" className="space-y-8 scroll-mt-24">
-          <div className="flex items-center justify-between border-b border-zinc-800 pb-4">
-            <div>
-              <div className="text-xs font-mono tracking-widest text-cyan-400 uppercase flex items-center gap-2">
-                <span>{getSection("projects")?.label ?? "02 — projects"}</span>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight mt-1">
-                {getSection("projects")?.title ?? "Featured Engineering Works"}
-              </h2>
-            </div>
-            <Layers className="w-6 h-6 text-zinc-600" />
+        {/* 02 — Projects Section */}
+        <section id="projects" className="space-y-6 scroll-mt-24">
+          <div className="border-b border-zinc-900 pb-3 flex items-center justify-between">
+            <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest">
+              02 — projects
+            </span>
+            <span className="font-mono text-xs text-zinc-600">Featured Systems</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {PORTFOLIO_DATA.projects.map((project, index) => (
+          <div className="space-y-4">
+            {PORTFOLIO_DATA.projects.map((project, idx) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                whileHover={{ y: -4 }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
                 className={cn(
-                  "group relative rounded-2xl p-6 md:p-8 flex flex-col justify-between",
-                  "bg-zinc-900/40 border border-zinc-800 backdrop-blur-xl",
-                  "hover:border-cyan-500/40 hover:shadow-[0_0_30px_rgba(6,182,212,0.12)] transition-all duration-300"
+                  "p-6 md:p-7 rounded-xl border border-zinc-900 bg-zinc-950/40",
+                  "hover:border-zinc-800 hover:bg-zinc-900/30 transition-all duration-200 group"
                 )}
               >
-                <div className="space-y-4">
-                  {/* Top Badges & Github Link */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="px-2.5 py-1 rounded-md text-xs font-mono font-medium bg-cyan-950/60 border border-cyan-800/60 text-cyan-300">
+                <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2.5">
+                      <h3 className="text-lg md:text-xl font-bold text-zinc-100 group-hover:text-white transition-colors">
+                        {project.title}
+                      </h3>
+                      <span className="px-2 py-0.5 rounded text-[11px] font-mono bg-zinc-900 text-zinc-400 border border-zinc-800">
                         {project.type}
                       </span>
-                      {project.role && (
-                        <span className="text-[11px] font-mono text-zinc-400">
-                          {project.role}
-                        </span>
-                      )}
                     </div>
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-zinc-400 hover:text-white p-1 rounded-lg hover:bg-zinc-800 transition-colors"
-                        title="View Source on GitHub"
-                      >
-                        <Github className="w-5 h-5" />
-                      </a>
-                    )}
-                  </div>
 
-                  {/* Title & Summary */}
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
-                      {project.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-zinc-300 leading-relaxed">
+                    <p className="text-xs font-mono text-zinc-400">
+                      Role: {project.role}
+                    </p>
+
+                    <p className="text-sm text-zinc-400 max-w-xl leading-relaxed">
                       {project.summary}
                     </p>
-                  </div>
-
-                  {/* Tags */}
-                  {project.tags && (
-                    <div className="flex flex-wrap gap-1.5 pt-1">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-0.5 rounded text-[10px] font-mono bg-zinc-800/50 text-cyan-300/80 border border-cyan-900/40"
-                        >
-                          #{tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Key Highlights List */}
-                  <div className="space-y-2 pt-2 border-t border-zinc-800/80">
-                    <div className="text-xs font-mono uppercase text-zinc-400 tracking-wider">
-                      Architectural Highlights:
-                    </div>
-                    <ul className="space-y-1.5 text-xs text-zinc-300">
-                      {project.keyHighlights.map((highlight, idx) => (
-                        <li key={idx} className="flex items-start gap-2">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 mt-0.5 shrink-0" />
-                          <span>{highlight}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Tech Badges & Action */}
-                <div className="mt-6 pt-4 border-t border-zinc-800/70 flex flex-wrap items-center justify-between gap-3">
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2 py-0.5 rounded text-[11px] font-mono bg-zinc-800/80 text-zinc-300 border border-zinc-700/50"
-                      >
-                        {tech}
-                      </span>
-                    ))}
                   </div>
 
                   {project.githubUrl && (
@@ -323,60 +251,81 @@ export default function PortfolioPage() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
+                      className="inline-flex items-center gap-1 font-mono text-xs text-zinc-400 hover:text-zinc-100 transition-colors shrink-0 group-hover:translate-x-0.5 transition-transform"
                     >
-                      <span>Repository</span>
-                      <ArrowUpRight className="w-3.5 h-3.5" />
+                      <span>github</span>
+                      <span>↗</span>
                     </a>
                   )}
+                </div>
+
+                {/* Key Bullet Highlights */}
+                <div className="mt-4 pt-4 border-t border-zinc-900/90 space-y-1.5">
+                  {project.keyHighlights.map((highlight, hIdx) => (
+                    <div
+                      key={hIdx}
+                      className="text-xs text-zinc-400 flex items-start gap-2"
+                    >
+                      <span className="text-zinc-600 mt-0.5">•</span>
+                      <span>{highlight}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Tech Tags */}
+                <div className="mt-4 pt-3 flex flex-wrap gap-1.5">
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2 py-0.5 rounded text-[11px] font-mono bg-zinc-900/90 text-zinc-400 border border-zinc-800/80"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                 </div>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* 03 — Technical Stack & Infrastructure */}
-        <section id="stack" className="space-y-8 scroll-mt-24">
-          <div className="border-b border-zinc-800 pb-4">
-            <div className="text-xs font-mono tracking-widest text-emerald-400 uppercase flex items-center gap-2">
-              <span>{getSection("stack")?.label ?? "03 — stack"}</span>
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight mt-1">
-              {getSection("stack")?.title ?? "Technical Stack & Infrastructure"}
-            </h2>
+        {/* 03 — Tech Stack Section */}
+        <section id="stack" className="space-y-6 scroll-mt-24">
+          <div className="border-b border-zinc-900 pb-3 flex items-center justify-between">
+            <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest">
+              03 — tech stack
+            </span>
+            <span className="font-mono text-xs text-zinc-600">Core Engineering Arsenal</span>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {PORTFOLIO_DATA.techStack.categorized.map((category, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {PORTFOLIO_DATA.techStack.categorized.map((category, idx) => (
               <motion.div
                 key={category.name}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="rounded-2xl p-6 bg-zinc-900/40 border border-zinc-800/90 backdrop-blur-xl hover:border-zinc-700 transition-colors flex flex-col justify-between"
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                className="p-5 rounded-xl border border-zinc-900 bg-zinc-950/40 hover:border-zinc-800 transition-colors flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 rounded-lg bg-zinc-800/80 border border-zinc-700/50">
-                      {getCategoryIcon(category.name)}
+                  <div className="flex items-center gap-2.5 mb-2">
+                    <div className="p-1.5 rounded-md bg-zinc-900 border border-zinc-800">
+                      {getDomainIcon(category.name)}
                     </div>
-                    <h3 className="font-semibold text-base text-zinc-100">
+                    <h3 className="font-semibold text-sm text-zinc-200">
                       {category.name}
                     </h3>
                   </div>
 
-                  {category.description && (
-                    <p className="text-xs text-zinc-400 mb-4 leading-relaxed">
-                      {category.description}
-                    </p>
-                  )}
+                  <p className="text-xs text-zinc-500 mb-4 leading-relaxed">
+                    {category.description}
+                  </p>
 
-                  <div className="flex flex-wrap gap-2">
-                    {category.items.map((skill) => (
+                  <div className="flex flex-wrap gap-1.5">
+                    {category.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-3 py-1.5 rounded-lg text-xs font-mono font-medium bg-zinc-800/60 border border-zinc-700/60 text-zinc-200 hover:border-cyan-500/50 hover:text-cyan-300 transition-all cursor-default"
+                        className="px-2.5 py-1 rounded-md text-xs font-mono bg-zinc-900/90 border border-zinc-800/90 text-zinc-300 hover:border-zinc-700 transition-colors"
                       >
                         {skill}
                       </span>
@@ -388,113 +337,84 @@ export default function PortfolioPage() {
           </div>
         </section>
 
-        {/* 04 — Academic Excellence Spotlight */}
-        <section id="academics" className="space-y-8 scroll-mt-24">
-          <div className="border-b border-zinc-800 pb-4">
-            <div className="text-xs font-mono tracking-widest text-cyan-400 uppercase flex items-center gap-2">
-              <span>{getSection("academics")?.label ?? "04 — education & achievements"}</span>
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-white tracking-tight mt-1">
-              {getSection("academics")?.title ?? "Academic Excellence Spotlight"}
-            </h2>
+        {/* 04 — Education & Recognition Section */}
+        <section id="education" className="space-y-6 scroll-mt-24">
+          <div className="border-b border-zinc-900 pb-3 flex items-center justify-between">
+            <span className="font-mono text-xs text-zinc-400 uppercase tracking-widest">
+              04 — education
+            </span>
+            <span className="font-mono text-xs text-zinc-600">Academic Background</span>
           </div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className={cn(
-              "relative rounded-2xl p-8 md:p-10 overflow-hidden",
-              "bg-gradient-to-br from-zinc-900/90 via-zinc-900/50 to-zinc-950/90",
-              "border border-emerald-500/30 shadow-[0_0_35px_rgba(16,185,129,0.08)]"
-            )}
+            transition={{ duration: 0.4 }}
+            className="p-6 md:p-8 rounded-xl border border-zinc-900 bg-zinc-950/40 hover:border-zinc-800 transition-all space-y-5"
           >
-            {/* Ambient Corner Glow */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-              <div className="lg:col-span-2 space-y-4">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-mono font-semibold bg-emerald-950/60 border border-emerald-700/60 text-emerald-300">
-                    <GraduationCap className="w-4 h-4 text-emerald-400" />
-                    <span>{PORTFOLIO_DATA.academicBackground.degreeStatus}</span>
-                  </span>
-                  <span className="px-3 py-1 rounded-md text-xs font-mono font-semibold bg-cyan-950/60 border border-cyan-800/60 text-cyan-300">
-                    {PORTFOLIO_DATA.academicBackground.track}
-                  </span>
-                </div>
-
-                <h3 className="text-2xl md:text-3xl font-bold text-white">
-                  Graduated with {PORTFOLIO_DATA.academicBackground.distinction}
+            <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
+              <div>
+                <h3 className="text-lg md:text-xl font-bold text-zinc-100">
+                  {PORTFOLIO_DATA.academicBackground.track}
                 </h3>
-
-                <p className="text-zinc-300 text-sm md:text-base leading-relaxed">
-                  {PORTFOLIO_DATA.academicBackground.description}
+                <p className="text-xs font-mono text-zinc-400 mt-1">
+                  Status: {PORTFOLIO_DATA.academicBackground.degreeStatus}
                 </p>
-
-                {PORTFOLIO_DATA.academicBackground.highlights && (
-                  <ul className="space-y-1.5 pt-2 text-xs text-zinc-300 font-mono">
-                    {PORTFOLIO_DATA.academicBackground.highlights.map((h, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                        <span>{h}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
               </div>
 
-              {/* Distinction Stat Box */}
-              <div className="rounded-xl p-6 bg-zinc-950/80 border border-emerald-500/40 text-center space-y-2 shadow-[0_0_20px_rgba(16,185,129,0.15)]">
-                <div className="text-xs font-mono tracking-widest text-emerald-400 uppercase">
-                  Grade Weighted Average
-                </div>
-                <div className="text-5xl font-black tracking-tight text-white font-mono">
+              <div className="inline-flex items-baseline gap-2">
+                <span className="text-2xl md:text-3xl font-black font-mono text-zinc-100">
                   {PORTFOLIO_DATA.academicBackground.gwa}
-                </div>
-                <div className="text-xs font-mono text-zinc-400">
+                </span>
+                <span className="text-xs font-mono text-emerald-400 px-2 py-0.5 rounded bg-emerald-950/40 border border-emerald-900/50">
                   {PORTFOLIO_DATA.academicBackground.distinction}
-                </div>
+                </span>
               </div>
             </div>
+
+            <p className="text-sm text-zinc-400 leading-relaxed max-w-2xl">
+              {PORTFOLIO_DATA.academicBackground.description}
+            </p>
+
+            {PORTFOLIO_DATA.academicBackground.highlights && (
+              <div className="pt-2 border-t border-zinc-900 space-y-1.5">
+                {PORTFOLIO_DATA.academicBackground.highlights.map((h, i) => (
+                  <div key={i} className="text-xs font-mono text-zinc-400 flex items-center gap-2">
+                    <span className="text-emerald-500">✓</span>
+                    <span>{h}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </motion.div>
         </section>
 
-        {/* Contact / CTA Footer */}
-        <section id="contact" className="pt-8 scroll-mt-24">
-          <div className="rounded-2xl p-8 md:p-12 bg-zinc-900/30 border border-zinc-800 text-center space-y-6 backdrop-blur-xl">
-            <h2 className="text-2xl md:text-4xl font-extrabold text-white tracking-tight">
-              Let&apos;s Build Resilient Systems Together
-            </h2>
-            <p className="max-w-xl mx-auto text-sm md:text-base text-zinc-400">
-              Feel free to reach out for mobile engineering collaborations, system architecture discussions, or professional inquiries.
-            </p>
+        {/* Minimalist Contact CTA */}
+        <section className="pt-8 border-t border-zinc-900">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <h4 className="text-sm font-bold text-zinc-200 font-mono">
+                Initiate Contact
+              </h4>
+              <p className="text-xs text-zinc-500">
+                saltodominique905@gmail.com • Taguig City, Philippines
+              </p>
+            </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+            <div className="flex items-center gap-3">
               <a
                 href={`mailto:${emailAddress}`}
-                className="px-6 py-3 rounded-xl bg-cyan-500 text-zinc-950 font-bold text-sm tracking-wide hover:bg-cyan-400 transition-colors flex items-center gap-2 shadow-[0_0_20px_rgba(6,182,212,0.25)]"
+                className="px-4 py-2 rounded-lg bg-zinc-100 text-zinc-950 font-bold text-xs font-mono hover:bg-white transition-colors"
               >
-                <Mail className="w-4 h-4" />
-                <span>Send Direct Email</span>
+                Send Email
               </a>
 
               <button
                 onClick={handleCopyEmail}
-                className="px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-700 text-zinc-200 hover:text-white hover:border-zinc-500 transition-all flex items-center gap-2 text-sm font-medium"
+                className="px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:border-zinc-700 transition-colors text-xs font-mono"
               >
-                {copiedEmail ? (
-                  <>
-                    <Check className="w-4 h-4 text-emerald-400" />
-                    <span>Copied ({emailAddress})</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-4 h-4 text-zinc-400" />
-                    <span>Copy Address</span>
-                  </>
-                )}
+                {copiedEmail ? "Copied" : "Copy Email"}
               </button>
             </div>
           </div>
@@ -502,13 +422,15 @@ export default function PortfolioPage() {
       </main>
 
       {/* Minimalist Footer */}
-      <footer className="relative z-10 border-t border-zinc-800/80 mt-20 py-8 text-center text-xs font-mono text-zinc-500">
-        <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <footer className="relative z-10 border-t border-zinc-900 mt-20 py-8 text-center text-xs font-mono text-zinc-600">
+        <div className="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <div>
-            &copy; {new Date().getFullYear()} {PORTFOLIO_DATA.personalInfo.fullName}. All rights reserved.
+            &copy; {new Date().getFullYear()} {PORTFOLIO_DATA.personalInfo.fullName}
           </div>
-          <div className="flex items-center gap-4 text-zinc-400">
-            <span>Designed with Next.js 14 & Tailwind</span>
+          <div className="flex items-center gap-3 text-zinc-500">
+            <span>Taguig City, PH</span>
+            <span>•</span>
+            <span>Next.js 14 & Tailwind</span>
           </div>
         </div>
       </footer>
